@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#282828",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "老陈云音乐"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
