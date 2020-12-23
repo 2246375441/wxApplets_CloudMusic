@@ -1,14 +1,8 @@
 <view class="indexContent">
   <!-- 轮播图 -->
   <swiper class="banners" indicator-dots="true" indicator-color="#2b2b2b" indicator-active-color="#f5f5f5">
-    <swiper-item>
-      <image src="http://n.sinaimg.cn/photo/transform/700/w1000h500/20201106/1ad8-kcpxnwv8925892.png"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="http://n.sinaimg.cn/photo/transform/700/w1000h500/20201106/1ad8-kcpxnwv8925892.png"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="http://n.sinaimg.cn/photo/transform/700/w1000h500/20201106/1ad8-kcpxnwv8925892.png"></image>
+    <swiper-item wx:for="{{bannerList}}" wx:key="bannerId">
+      <image src="{{item.pic}}"></image>
     </swiper-item>
   </swiper>
 
@@ -40,7 +34,6 @@
   <view class="recommendContent">
     <!-- 头部 -->
     <view class="header">
-      <!-- <text class="title">推荐歌曲</text> -->
       <view>
         <text>为你精心推荐</text>
         <text class="more">查看更多</text>
@@ -49,25 +42,10 @@
 
     <!-- 主要内容区域 -->
     <scroll-view class="recommendScroll" enable-flex scroll-x>
-      <view class="scrollItem">
-        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffjmingfeng.com%2Fimg%2F1%2F0646212951%2F51%2F5fcf75cbfd1a3366ab3afa2673feba46%2F5805597201%2F8628352214.jpg&refer=http%3A%2F%2Ffjmingfeng.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611225922&t=d8e9be343bbd993d9fc350ffd4abb1a6"></image>
-        <text>歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</text>
-      </view>
-      <view class="scrollItem">
-        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffjmingfeng.com%2Fimg%2F1%2F0646212951%2F51%2F5fcf75cbfd1a3366ab3afa2673feba46%2F5805597201%2F8628352214.jpg&refer=http%3A%2F%2Ffjmingfeng.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611225922&t=d8e9be343bbd993d9fc350ffd4abb1a6"></image>
-        <text>歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</text>
-      </view>
-      <view class="scrollItem">
-        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffjmingfeng.com%2Fimg%2F1%2F0646212951%2F51%2F5fcf75cbfd1a3366ab3afa2673feba46%2F5805597201%2F8628352214.jpg&refer=http%3A%2F%2Ffjmingfeng.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611225922&t=d8e9be343bbd993d9fc350ffd4abb1a6"></image>
-        <text>歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</text>
-      </view>
-      <view class="scrollItem">
-        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffjmingfeng.com%2Fimg%2F1%2F0646212951%2F51%2F5fcf75cbfd1a3366ab3afa2673feba46%2F5805597201%2F8628352214.jpg&refer=http%3A%2F%2Ffjmingfeng.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611225922&t=d8e9be343bbd993d9fc350ffd4abb1a6"></image>
-        <text>歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</text>
-      </view>
-      <view class="scrollItem">
-        <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffjmingfeng.com%2Fimg%2F1%2F0646212951%2F51%2F5fcf75cbfd1a3366ab3afa2673feba46%2F5805597201%2F8628352214.jpg&refer=http%3A%2F%2Ffjmingfeng.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1611225922&t=d8e9be343bbd993d9fc350ffd4abb1a6"></image>
-        <text>歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</text>
+      <!-- 推荐歌曲区域 -->
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:for-item="data" wx:key="id">
+        <image src="{{data.picUrl}}"></image>
+        <text>{{data.name}}</text>
       </view>
     </scroll-view>
   </view>

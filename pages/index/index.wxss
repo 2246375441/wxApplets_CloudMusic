@@ -1,4 +1,3 @@
-/* pages/index/index.wxss */
 .indexContent{
   width: 100%;
   height: 100%;
