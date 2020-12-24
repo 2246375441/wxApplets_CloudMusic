@@ -1,1 +1,7 @@
 @import "/static/iconfont/iconfont.wxss";
+page{
+  /* 全局文字色 */
+  color: #fcfcfc;
+  /* 全局背景色 */
+  background:#141615 ;
+}
