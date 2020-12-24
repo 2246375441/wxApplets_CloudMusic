@@ -49,25 +49,11 @@
   padding: 20rpx;
   color: #f6f6f6;
 }
-.recommendContent .header .title{
-  font-size: 32rpx;
-  line-height: 80rpx;
-  color: #f6f6f6;
-}
-.recommendContent .header{
-  padding-bottom: 20rpx;
-}
-.recommendContent .header .more{
-  float: right;
-  border: 1rpx solid #fcfcfc;
-  color: #f6f6f6;
-  font-size: 22rpx;
-  border-radius: 30rpx;
-  padding: 5rpx 15rpx;
-}
+
 /* 推荐歌曲--内容区域 */
 .recommendScroll{
   display: flex;
+  height: 300rpx;
 }
 .scrollItem{
   width: 200rpx;
@@ -92,4 +78,48 @@
   display: -webkit-box;
   -webkit-box-orient: vertical; /*设置对齐模式*/
   -webkit-line-clamp: 2;/*设置盒子行数*/
+}
+
+
+/* 排行榜 */
+.topListSwiper{
+  height: 400rpx;
+}
+.topList{
+  padding: 0 20rpx 20rpx 20rpx;
+}
+.swiperItem{
+  width: 96%;
+}
+/* 排行榜内容区域 */
+.swiperItem .title{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color:#f6f6f6;
+}
+.musicItem{
+  /* 当父元素设置为flex弹性布局 其子元素会自动称为块级block元素 */
+  display: flex;
+  color:#f6f6f6;
+  margin-bottom: 20rpx;
+}
+.musicItem image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+}
+.musicItem .count{
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+.musicItem .musicName{
+  height: 100rpx;
+  line-height: 100rpx;
+  /* 溢出文本隐藏 */
+  max-width: 400rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

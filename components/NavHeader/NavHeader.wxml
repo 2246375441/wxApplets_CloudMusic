@@ -1,0 +1,8 @@
+<view>
+  <view class="header">
+    <view>
+      <text>{{title}}</text>
+      <text class="more">{{nav}}</text>
+    </view>
+  </view>
+</view>

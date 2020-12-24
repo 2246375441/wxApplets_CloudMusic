@@ -8,6 +8,7 @@ Page({
   data: {
     bannerList:[], //轮播图数据
     recommendList:[], //推荐歌单数据
+    topList:[] //排行榜数据
   },
 
   /**
@@ -24,6 +25,29 @@ Page({
     this.setData({
       recommendList:recommendListData.result
     })
+    // 请求排行榜数据
+    // http://localhost:3000/top/list?idx=0   idx为第几个排行榜数据
+    // 目的需求 需要五个排行榜 则需要发送五次排行榜请求数据 idx为0-4  idx范围(0-20)
+    let idxIndex = 0  //当前请求第几个排行榜
+    let idxIndexMax = 4 //请求到第几个排行榜结束
+    let idxIndexMuiscCount = 3 //每个排行榜取多少首歌曲
+    let resultArr = []
+    for (let i = 0; i < idxIndexMax+1; i++) {
+      let topListData = await request('/top/list',{idx:i})
+      let topListItem = {
+        name:topListData.playlist.name,
+        tracks:topListData.playlist.tracks.slice(0,idxIndexMuiscCount)
+      }
+      resultArr.push(topListItem)
+      // 更新获取的排行榜数据 ----用户体验＋,渲染次数多,发送完毕响应数据之后就开始渲染
+      this.setData({
+        topList:resultArr
+      })
+    }
+    // 更新获取的排行榜数据 ----用户体验-,渲染次数少,需要等待所有请求结束渲染页面
+    // this.setData({
+    //   topList:resultArr
+    // })
   },
 
   /**
