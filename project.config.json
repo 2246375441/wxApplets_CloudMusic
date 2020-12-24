@@ -64,6 +64,12 @@
         {
           "name": "pages/personal/personal",
           "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
           "scene": null
         }
       ]
