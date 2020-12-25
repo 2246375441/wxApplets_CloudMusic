@@ -77,22 +77,45 @@ Page({
 
     // 发送请求-根据服务器返回code通知用户结果
     let result = await request('/login/cellphone',{phone,password})
-    console.log(result)
+    // console.log(result)
     if(result.code===200){
       // 登录成功200
+      // 提示登录成功
+      wx.showToast({
+        title:'登陆成功',
+        icon: 'none'
+      })
+      // 将用户的信息存储到本地  JSON.stringify()将对象转换为 字符串
+      wx.setStorageSync('userInfo',JSON.stringify(result.profile))
 
+      // 跳转到个人界面
+      wx.reLaunch({
+        url: '/pages/personal/personal',
+      })
     }else if(result.code===400){
       // 手机号错误400
-
+      wx.showToast({
+        title:'手机号错误',
+        icon: 'none'
+      })
     }else if(result.code===501){
       // 账号不存在501
-
+      wx.showToast({
+        title:'账号不存在',
+        icon: 'none'
+      })
     }else if(result.code===502){
       // 密码错误502
-
+      wx.showToast({
+        title:'密码错误',
+        icon: 'none'
+      })
     }else{
       // 当前状态码有问题,登录失败
-
+      wx.showToast({
+        title:'请重新登录',
+        icon: 'none'
+      })
     }
   },
 
