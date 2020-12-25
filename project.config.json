@@ -70,6 +70,12 @@
         {
           "name": "pages/login/login",
           "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/video/video",
+          "pathName": "pages/video/video",
           "scene": null
         }
       ]

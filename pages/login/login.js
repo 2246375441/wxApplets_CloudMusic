@@ -76,7 +76,7 @@ Page({
     // 前端验证通过
 
     // 发送请求-根据服务器返回code通知用户结果
-    let result = await request('/login/cellphone',{phone,password})
+    let result = await request('/login/cellphone',{phone,password,isLogin:true})
     // console.log(result)
     if(result.code===200){
       // 登录成功200

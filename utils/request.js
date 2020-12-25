@@ -18,11 +18,22 @@ import config from './config'
 // 封装请求函数
 export default (url,data={},method="GET") => {
   return new Promise((resolve,reject)=>{
-    wx.request({
+    wx.request({  
       url:config.host + url,
       data,
       method,
+      header:{
+        cookie: wx.getStorageSync('cookies')?wx.getStorageSync('cookies').find(item => item.indexOf('MUSIC_U') !== -1):''
+      },
       success:(res)=>{
+        // 判断是否是登录请求
+        if(data.isLogin){
+          // 只有登录请求 携带isLogin:true参数
+          wx.setStorage({
+            key: 'cookies',
+            data: res.cookies
+          })
+        }
         resolve(res.data)
       },
       fail:(err)=>{
