@@ -66,6 +66,23 @@ Page({
       videoList:videoList
     })
   },
+  // 点击播放/继续播放 处理回调
+  handlePlay(event){
+    // 需求
+    //    1.在点击播放的事件中需要找到上一个播放的视频
+    //    2.在播放新的视频之前关闭上一个正在播放的视频
+    // 注意点
+    //    1.如何找到上一个视频的实例对象
+    //    2.如何确认点击播放的视频和正在播放的视频不是同一个视频
+    // 思路 
+    //    1.把实例绑定在this上面,每次点击都会先触发实例的视频关闭(先判断当前vid跟上个视频vid是否一样)
+    //    2.不一样则先把视频关闭 然后重新创建新视频的实例 绑定在this上面 ,一样则不关闭视频视频 继续播放
+
+    let vid = event.currentTarget.id //获取视频的id 
+    this.vid !== vid && this.videoContext && this.videoContext.stop();//先判断是否是上一个视频 是关闭暂停,否则跳过此操作
+    this.vid = vid //赋值 在全局上绑定 播放视频的id
+    this.videoContext = wx.createVideoContext(vid) //创建新的video实例控制/覆盖全局的视频实例
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

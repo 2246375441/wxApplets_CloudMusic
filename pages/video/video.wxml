@@ -9,9 +9,9 @@
   </view>
 
   <!-- 导航区域 -->
-  <scroll-view scroll-x class="navScroll" enable-flex>
+  <scroll-view scroll-x class="navScroll" enable-flex scroll-into-view="{{'scroll' + navId}}" scroll-with-animation>
     <!-- 选中 active -->
-    <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+    <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id" id="{{'scroll' + item.id}}">
       <view class="navContent {{navId===item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}">
         {{item.name}}
       </view>
@@ -21,7 +21,11 @@
   <!-- 视频区域 -->
   <scroll-view scroll-y class="videoScroll">
     <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
-      <video src="{{item.data.urlInfo.url}}"></video>
+      <!-- 视频 -->
+      <video src="{{item.data.urlInfo.url}}"
+      bindplay="handlePlay"
+      id="{{item.data.vid}}"
+      ></video>
 
       <view class="footer">
         <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
