@@ -8,7 +8,8 @@ Page({
   data: {
     videoGroupList:[], //导航的标签数据
     navId:'',//导航标识
-    videoList:[] //视频列表数据
+    videoList:[], //视频列表数据
+    videoId:'',//视频id标识
   },
 
   /**
@@ -81,6 +82,9 @@ Page({
     let vid = event.currentTarget.id //获取视频的id 
     this.vid !== vid && this.videoContext && this.videoContext.stop();//先判断是否是上一个视频 是关闭暂停,否则跳过此操作
     this.vid = vid //赋值 在全局上绑定 播放视频的id
+    this.setData({  //更新data中的videoId
+      videoId:vid 
+    })
     this.videoContext = wx.createVideoContext(vid) //创建新的video实例控制/覆盖全局的视频实例
   },
 

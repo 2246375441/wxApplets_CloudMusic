@@ -25,7 +25,14 @@
       <video src="{{item.data.urlInfo.url}}"
       bindplay="handlePlay"
       id="{{item.data.vid}}"
+      poster="{{item.data.coverUrl}}" 
+      class="common"
+      wx:if="{{videoId===item.data.vid}}"
       ></video>
+      <!-- 性能优化 使用image图片代替video标签 -->
+      <!-- 未播放的时候 用图片代替 播放 使用视频代替  优化加载 -->
+      <image wx:else src="{{item.data.coverUrl}}" id="{{item.data.vid}}" class="common" bindtap="handlePlay"></image>
+
 
       <view class="footer">
         <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
