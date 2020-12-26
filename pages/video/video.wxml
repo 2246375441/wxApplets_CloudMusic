@@ -25,9 +25,12 @@
       <video src="{{item.data.urlInfo.url}}"
       bindplay="handlePlay"
       id="{{item.data.vid}}"
-      poster="{{item.data.coverUrl}}" 
+      poster="{{item.data.coverUrl}}"
       class="common"
       wx:if="{{videoId===item.data.vid}}"
+      object-fit="cover"
+      bindtimeupdate="handleTimeUpdate"
+      bindended="handleEnd"
       ></video>
       <!-- 性能优化 使用image图片代替video标签 -->
       <!-- 未播放的时候 用图片代替 播放 使用视频代替  优化加载 -->

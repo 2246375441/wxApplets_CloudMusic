@@ -10,6 +10,7 @@ Page({
     navId:'',//导航标识
     videoList:[], //视频列表数据
     videoId:'',//视频id标识
+    videoUpdateTime:[] //记录video播放时长
   },
 
   /**
@@ -78,6 +79,9 @@ Page({
     // 思路 
     //    1.把实例绑定在this上面,每次点击都会先触发实例的视频关闭(先判断当前vid跟上个视频vid是否一样)
     //    2.不一样则先把视频关闭 然后重新创建新视频的实例 绑定在this上面 ,一样则不关闭视频视频 继续播放
+    // 单例模式：
+    //    1. 需要创建多个对象的场景下，通过一个变量接收，始终保持只有一个对象，
+    //    2. 节省内存空间
 
     let vid = event.currentTarget.id //获取视频的id 
     this.vid !== vid && this.videoContext && this.videoContext.stop();//先判断是否是上一个视频 是关闭暂停,否则跳过此操作
@@ -86,6 +90,51 @@ Page({
       videoId:vid 
     })
     this.videoContext = wx.createVideoContext(vid) //创建新的video实例控制/覆盖全局的视频实例
+
+    // 判断当前视频是否播放过 是否有播放记录 有的话则跳转 没有则开始播放
+    let _videoUpdateTime = this.data.videoUpdateTime
+    let videoItem = _videoUpdateTime.find(item=>item.vid === vid)
+    if(videoItem){
+      this.videoContext.seek(videoItem.currentTime)
+    }
+    this.videoContext.play()
+  },
+  // 监听视频播放进度条
+  handleTimeUpdate(event){
+    // console.log(event)
+    // 存放当前视频id 和 视频播放进度
+    let videoTimeObj = {
+      vid:event.currentTarget.id, 
+      currentTime: event.detail.currentTime
+    } 
+    // 获取this.data中的videoUpdateTime数据
+    let _videoUpdateTime = this.data.videoUpdateTime
+    // 进行查找 是否 之前播放过
+    let videoItem = _videoUpdateTime.find(item=> item.vid===videoTimeObj.vid)
+    if(videoItem){
+      // 之前有记录
+      videoItem.currentTime = event.detail.currentTime
+    }else{
+      // 之前没有
+      _videoUpdateTime.push(videoTimeObj)
+    }
+    // 统一更新this.data中的状态
+    this.setData({
+      videoUpdateTime:_videoUpdateTime
+    })
+  },
+  // 视频播放结束调用
+  handleEnd(event){
+    // 移除记录播放时长数组中当前视频对象
+    let _videoUpdateTime = this.data.videoUpdateTime
+    // 获得该视频对象 在数组中的下标值
+    var index =  _videoUpdateTime.findIndex(item => item.vid ===event.currentTarget.id)
+    // 移除该 视频对象
+    _videoUpdateTime.splice(index,1)
+    // 修改data中数据
+    this.setData({
+      videoUpdateTime:_videoUpdateTime
+    })
   },
 
   /**

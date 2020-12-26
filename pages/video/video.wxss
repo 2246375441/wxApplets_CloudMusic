@@ -47,6 +47,8 @@
 /* 视频区域 */
 .videoScroll{
   margin-top: 10rpx;
+  /* 100vh是整个屏幕的视口高度 - 40.6*2搜索框高度 - 30*2导航条高度*/
+  height: calc(100vh - 81.2rpx);
 }
 .videoItem{
   padding: 0 3%;
