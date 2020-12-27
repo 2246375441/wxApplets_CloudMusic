@@ -76,6 +76,12 @@
         {
           "name": "pages/video/video",
           "pathName": "pages/video/video",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/recommendSong/recommendSong",
+          "pathName": "pages/recommendSong/recommendSong",
           "scene": null
         }
       ]
