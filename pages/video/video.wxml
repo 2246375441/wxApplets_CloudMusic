@@ -9,7 +9,7 @@
   </view>
 
   <!-- 导航区域 -->
-  <scroll-view scroll-x class="navScroll" enable-flex scroll-into-view="{{'scroll' + navId}}" scroll-with-animation>
+  <scroll-view scroll-x class="navScroll" enable-flex scroll-into-view="{{'scroll' + navId}}" scroll-with-animation >
     <!-- 选中 active -->
     <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id" id="{{'scroll' + item.id}}">
       <view class="navContent {{navId===item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}">
@@ -19,7 +19,15 @@
   </scroll-view>
 
   <!-- 视频区域 -->
-  <scroll-view scroll-y class="videoScroll">
+  <!-- refresher-enabled开启下拉刷新   bindrefresherrefresh下拉刷新触发事件 refresher-default-style下拉三点颜色  refresher-triggered下拉刷新状态开启或关闭-->
+  <!--  -->
+  <scroll-view scroll-y class="videoScroll"  
+  refresher-enabled 
+  bindrefresherrefresh="handleRefresher"
+  refresher-default-style="white"
+  refresher-triggered="{{isTriggered}}"
+  bindscrolltolower="handleTolower"
+  >
     <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
       <!-- 视频 -->
       <video src="{{item.data.urlInfo.url}}"

@@ -10,7 +10,8 @@ Page({
     navId:'',//导航标识
     videoList:[], //视频列表数据
     videoId:'',//视频id标识
-    videoUpdateTime:[] //记录video播放时长
+    videoUpdateTime:[], //记录video播放时长
+    isTriggered:true  //下拉刷新是否开启
   },
 
   /**
@@ -65,7 +66,8 @@ Page({
       return item
     })
     this.setData({
-      videoList:videoList
+      videoList:videoList,
+      isTriggered:false  // 关闭下拉刷新
     })
   },
   // 点击播放/继续播放 处理回调
@@ -136,6 +138,20 @@ Page({
       videoUpdateTime:_videoUpdateTime
     })
   },
+  // 自定义下拉刷新的回调 scroll-view
+  handleRefresher(){  
+    this.getVideoList(this.data.navId)
+  },
+  // 拉到底部 加载更多
+  async handleTolower(event){
+    //注意 因为目前网易云没有下拉加载更多的api接口  
+    let res = await request('/video/group',{id:this.data.navId})
+    let _videoList = this.data.videoList
+    _videoList.push(...res.datas)
+    this.setData({
+      videoList:_videoList
+    })
+  },  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -169,20 +185,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    // console.log('监听用户下拉动作')
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    // console.log('页面上拉触底事件的处理函数')
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (data) {
+    // console.log(data)
+    return {
+      title:'云音乐转发'
+    }
   }
 })
