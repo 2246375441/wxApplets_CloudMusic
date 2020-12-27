@@ -82,6 +82,12 @@
         {
           "name": "pages/recommendSong/recommendSong",
           "pathName": "pages/recommendSong/recommendSong",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/songDetail/songDetail",
+          "pathName": "pages/songDetail/songDetail",
           "scene": null
         }
       ]
