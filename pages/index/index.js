@@ -49,7 +49,12 @@ Page({
     //   topList:resultArr
     // })
   },
-
+	// 路由跳转至 每日推荐
+	routerRecommendSong(){
+		wx.navigateTo({
+			url:'/pages/recommendSong/recommendSong'
+		})
+	},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

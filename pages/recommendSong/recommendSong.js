@@ -46,6 +46,15 @@ Page({
       recommendList:recommendListData.recommend
     })
   },
+	// 跳转至歌曲详情 播放器页面
+	toSongDetail(event){
+		// 数据绑定在data-song="{{item}}"中
+		let song = event.currentTarget.dataset.song
+		console.log(event)
+		wx.navigateTo({
+			url:'/pages/songDetail/songDetail?musicId=' + song.id
+		})
+	},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
