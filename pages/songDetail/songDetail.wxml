@@ -15,7 +15,7 @@
 		<!-- 中进度条 -->
 		<view class="braControl">
 			<!-- 实时进度条 -->
-			<view class="audio-currentTime-Bar">
+			<view class="audio-currentTime-Bar" style="width:{{currentWidth+'rpx'}};">
 				<!-- 小圆球 -->
 				<view class="audio-circle"></view>
 			</view>

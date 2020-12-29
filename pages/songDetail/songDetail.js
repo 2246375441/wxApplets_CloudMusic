@@ -13,8 +13,9 @@ Page({
 		song:{},  //歌曲详情对象
 		musicId:'', //音乐id
 		musicLink:'', //音乐的链接
-		currentTime:'00:00', //开始时长
+		currentTime:'00:00', //开始时长|实时时长
 		durationTime:'00:00',//结束时长|总时长
+		currentWidth:0, //实时进度条宽度
   },
   /**
    * 生命周期函数--监听页面加载
@@ -63,7 +64,21 @@ Page({
 			// 修改app.js全局音乐播放的状态
 		})
 		
-		
+		// 监听音乐实时播放进度
+		this.backgroundAudioManager.onTimeUpdate(()=>{
+			// console.log(`总时长`,this.backgroundAudioManager.duration)
+			// console.log(`实时时长`,this.backgroundAudioManager.currentTime)
+			// 获取的值单位是秒s 需要 转换为毫秒ms
+			// 格式化实时的播放时间
+			let currentTime = moment(this.backgroundAudioManager.currentTime*1000).format('mm:ss')
+			// 计算进度条长度
+			let currentWidth = this.backgroundAudioManager.currentTime/this.backgroundAudioManager.duration * 450 
+			// 更新页面数据
+			this.setData({
+				currentTime,
+				currentWidth
+			})
+		})
   },
 	
 	// 修改播放状态功能函数
