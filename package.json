@@ -1,0 +1,18 @@
+{
+  "name": "applets-cloud-music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/chenxinlong1204/applets-cloud-music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pubsub-js": "^1.9.2"
+  }
+}

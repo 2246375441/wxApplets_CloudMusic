@@ -1,4 +1,5 @@
-import request from '../../utils/request'
+import request from '../../utils/request';
+import PubSub from 'pubsub-js';
 // 获取全局实例 app.js中实例对象
 const appInstance = getApp()
 Page({
@@ -108,7 +109,11 @@ Page({
 		}
 	},
 	
-	// 
+	// 点击切换歌曲
+	handleSwitch(e){
+		// 获取事件中绑定的id值 判断是上一首还是下一首 e.target.id 中获取
+		console.log(e.target.id)
+	},
 	
 	// 
 	
