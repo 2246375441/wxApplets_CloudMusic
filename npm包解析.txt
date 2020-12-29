@@ -5,3 +5,18 @@
 1  pubsub-js 
    组件之间 通信
 	 订阅者 与 发布者 
+	 ☆ 重点:同key名订阅者 多次触发会叠加 当触发事件的时候 会一起触发
+	 ☆ 发布者 触发 --> 订阅者 事件
+	 
+	 //发布方事件
+	 //fnName事件名  data数据/可以为对象
+	 PubSub.publish('fnName',data)
+	 
+	 //订阅者事件
+	 PubSub.subscribe('fnName',(msg,data)=>{
+		 //msg 消息名称
+		 //data 数据
+	 })
+	 
+	 //取消订阅者事件绑定
+	 PubSub.unsubscribe('fnName')

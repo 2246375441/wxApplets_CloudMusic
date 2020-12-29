@@ -58,6 +58,8 @@ Page({
 			this.changePlayState(false)
 			// 修改app.js全局音乐播放的状态
 		})
+		
+		
   },
 	
 	// 修改播放状态功能函数
@@ -112,7 +114,23 @@ Page({
 	// 点击切换歌曲
 	handleSwitch(e){
 		// 获取事件中绑定的id值 判断是上一首还是下一首 e.target.id 中获取
-		console.log(e.target.id)
+		let type = e.target.id
+		// 关闭当前播放的音乐
+		this.backgroundAudioManager.stop()
+		// npm/发布消息数据给recommendSong/参数可以是对象
+		PubSub.publish('switchType',type)
+		
+		// 订阅recommendSong发布的musicId事件
+		PubSub.subscribe('musicId',(msg,data)=>{
+			// data => musicId
+			// 获取音乐详情信息
+			this.getMusicInfo(data)
+			// 自动播放歌曲
+			this.musicControl(true,data)
+			
+			// 取消订阅 防止堆栈叠加
+			PubSub.unsubscribe('musicId')
+		})	
 	},
 	
 	// 
