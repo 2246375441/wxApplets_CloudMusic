@@ -26,6 +26,7 @@ Page({
 		this.setData({
 			musicId:musicId
 		})
+		
 		// 获取音乐详情的功能函数
 		this.getMusicInfo(musicId)
 		
@@ -37,6 +38,12 @@ Page({
 				isPlay:true
 			})
 		}
+		
+		/*
+		*
+		* 下面为 全局音频控制 ↓
+		* 
+		*/
 		
 		// 创建控制音乐播放的实例对象
 		this.backgroundAudioManager = wx.getBackgroundAudioManager()
@@ -62,6 +69,17 @@ Page({
 			// 封装方法 修改实例的isPlay
 			this.changePlayState(false)
 			// 修改app.js全局音乐播放的状态
+		})
+		
+		// 监听音乐播放结束 自动下一首
+		this.backgroundAudioManager.onEnded(()=>{
+			// 切换下一首音乐 并且自动播放
+			PubSub.publish('switchType','next')
+			// 还原进度条长度
+			this.setData({
+				currentWidth:0,
+				currentTime:'00:00'
+			})
 		})
 		
 		// 监听音乐实时播放进度
