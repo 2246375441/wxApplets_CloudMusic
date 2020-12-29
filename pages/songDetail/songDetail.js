@@ -11,6 +11,7 @@ Page({
     isPlay:false,  //音乐是否播放
 		song:{},  //歌曲详情对象
 		musicId:'', //音乐id
+		musicLink:'', //音乐的链接
   },
   /**
    * 生命周期函数--监听页面加载
@@ -78,8 +79,8 @@ Page({
 		// })
 		// 控制音乐播放/暂停
 		// let {isPlay} = this.data
-		let {musicId} = this.data
-		this.musicControl(isPlay,musicId)
+		let {musicId,musicLink} = this.data
+		this.musicControl(isPlay,musicId,musicLink)
 	},
 	
 	// 获取音乐详情的功能函数
@@ -95,12 +96,20 @@ Page({
 	},
 	
 	// 控制音乐播放/暂停的功能函数
-	async musicControl(isPlay,musicId){
+	async musicControl(isPlay,musicId,musicLink){
 		if(isPlay){
 			// 播放
 			// 获取音乐的播放链接
-			let musicLinkData = await request('/song/url',{id:musicId})
-			let musicLink = musicLinkData.data[0].url
+			// 判断 当用户没有传入musicLink则发送请求 请求路径及数据
+			// 判断 当用户传入musicLink则不发送请求,用之前存储下来的数据
+			if(!musicLink){
+				let musicLinkData = await request('/song/url',{id:musicId})
+				musicLink = musicLinkData.data[0].url
+				
+				this.setData({
+					musicLink
+				})
+			}
 			// 设置音乐链接
 			this.backgroundAudioManager.src = musicLink;
 			// 设置歌曲名称(不设置无法播放歌曲)
