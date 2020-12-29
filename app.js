@@ -1,5 +1,9 @@
 App({
-
+	// 全局对象
+	globalData:{
+		isMusicPlay:false,  //是否有音乐在播放
+		musicId:''  //存储播放id
+	},
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */

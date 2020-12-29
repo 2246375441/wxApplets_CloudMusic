@@ -1,4 +1,6 @@
 import request from '../../utils/request'
+// 获取全局实例 app.js中实例对象
+const appInstance = getApp()
 Page({
 
   /**
@@ -21,29 +23,48 @@ Page({
 		// 获取音乐详情的功能函数
 		this.getMusicInfo(musicId)
 		
+		// 判断当前页面是否在播放--取全局app实例中的isMusicPlay和musicId
+		if(appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId){
+			// 全局中的isMusicPlay为true  且 全局的musicId和onLoad下的musicId一致触发 
+			// 当前音乐为 已经正在播放的音乐 --> 修改页面初始化
+			this.setData({
+				isPlay:true
+			})
+		}
+		
 		// 创建控制音乐播放的实例对象
 		this.backgroundAudioManager = wx.getBackgroundAudioManager()
+		
 		// 监听背景音乐播放
 		this.backgroundAudioManager.onPlay(()=>{
-
+			// 封装方法 修改实例的isPlay
 			this.changePlayState(true)
+			// 修改app.js全局音乐播放的状态
+			// appInstance.globalData.isMusicPlay = true; 封装在 changePlayState方法中
+			appInstance.globalData.musicId = musicId
 		})
+		
 		// 监听背景音乐暂停
 		this.backgroundAudioManager.onPause(()=>{
-
+			// 封装方法 修改实例的isPlay
 			this.changePlayState(false)
+			// 修改app.js全局音乐播放的状态
 		})
+		
 		// 监听移动端 浮框音乐关闭
 		this.backgroundAudioManager.onStop(()=>{
-
+			// 封装方法 修改实例的isPlay
 			this.changePlayState(false)
+			// 修改app.js全局音乐播放的状态
 		})
   },
+	
 	// 修改播放状态功能函数
 	changePlayState(isPlay){
 		this.setData({
 			isPlay:isPlay
 		})
+		appInstance.globalData.isMusicPlay = isPlay;
 	},
 	
 	// 点击播放/暂停
