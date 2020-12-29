@@ -10,7 +10,8 @@
 	
 	<!-- 进度条控制区域 -->
 	<view class="progressControl">
-		<text>00:00</text>
+		<!-- 开始时长 -->
+		<text>{{currentTime}}</text>
 		<!-- 中进度条 -->
 		<view class="braControl">
 			<!-- 实时进度条 -->
@@ -19,7 +20,8 @@
 				<view class="audio-circle"></view>
 			</view>
 		</view>
-		<text>03:00</text>
+		<!-- 结束时长|总时长 -->
+		<text>{{durationTime}}</text>
 	</view>
 	
 	<!-- 底部控制区域 -->

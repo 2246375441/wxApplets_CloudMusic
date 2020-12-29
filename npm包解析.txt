@@ -20,3 +20,8 @@
 	 
 	 //取消订阅者事件绑定
 	 PubSub.unsubscribe('fnName')
+	 
+2 moment
+	时间处理插件 网站 http://momentjs.cn/
+	moment('传入时间ms').format('处理格式')
+	moment('260773').format('mm:ss') //结果为04:20

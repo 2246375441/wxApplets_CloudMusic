@@ -1,5 +1,6 @@
 import request from '../../utils/request';
 import PubSub from 'pubsub-js';
+import moment from 'moment';
 // 获取全局实例 app.js中实例对象
 const appInstance = getApp()
 Page({
@@ -12,6 +13,8 @@ Page({
 		song:{},  //歌曲详情对象
 		musicId:'', //音乐id
 		musicLink:'', //音乐的链接
+		currentTime:'00:00', //开始时长
+		durationTime:'00:00',//结束时长|总时长
   },
   /**
    * 生命周期函数--监听页面加载
@@ -85,10 +88,17 @@ Page({
 	
 	// 获取音乐详情的功能函数
 	async getMusicInfo(musicId){
+		// 发送请求音乐详情
 		let songData = await request('/song/detail',{ids:musicId})
+		// 处理页面的开始时长和总时长
+		// songData.songs[0].dt 请求返回数据的总时长 单位ms
+		let durationTime = moment(songData.songs[0].dt).format('mm:ss')
 		this.setData({
-			song:songData.songs[0]
+			song:songData.songs[0],
+			durationTime
 		})
+		
+		
 		// 动态修改窗口标题
 		wx.setNavigationBarTitle({
 			title:this.data.song.name
