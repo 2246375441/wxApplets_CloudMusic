@@ -1,0 +1,58 @@
+.searchContainer{
+	padding: 14rpx 20rpx;
+}
+/* 头部搜索区域 */
+.header{
+	display: flex;
+	height: 60rpx;
+	line-height: 60rpx;
+	/* padding: 10rpx; */
+}
+.searchInput{
+	position: relative;
+	flex: 1;
+	background: #383838;
+	border-radius: 30rpx;
+}
+.cancel{
+	width: 100rpx;
+	text-align: center;
+}
+.searchIcon{
+	position: absolute;
+	left: 15rpx;
+}
+.searchInput input{
+	margin-left: 56rpx;
+	height: 60rpx;
+}
+.placeholder{
+	font-size: 28rpx;
+}
+
+/* 热搜榜 */
+.title{
+	font-size: 28rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	border-bottom: solid 1rpx red;
+}
+/* 热搜列表 */
+.hotList{
+	display: flex;
+	flex-wrap: wrap;
+}
+.hotItem{
+	width: 50%;
+	height: 80rpx;
+	line-height: 80rpx;
+	font-size: 26rpx;
+}
+.hotItem .order{
+	margin: 0 10rpx;
+}
+.iconImg{
+	width: 35rpx;
+	height: 20rpx;
+	margin-left: 10rpx;
+}

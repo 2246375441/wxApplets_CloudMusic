@@ -5,7 +5,8 @@
     "pages/video/video",
     "pages/login/login",
     "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail"
+    "pages/songDetail/songDetail",
+    "pages/search/search"
   ],
   "window": {
     "navigationBarBackgroundColor": "#282828",
@@ -37,7 +38,9 @@
       }
     ]
   },
-  "requiredBackgroundModes": ["audio"],
-	"style": "v2",
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -88,6 +88,12 @@
         {
           "name": "pages/songDetail/songDetail",
           "pathName": "pages/songDetail/songDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
           "scene": null
         }
       ]
