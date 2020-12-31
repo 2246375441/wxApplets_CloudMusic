@@ -3,9 +3,39 @@
 	<view class="header">
 		<view class="searchInput">
 			<text class="iconfont icon-search1 searchIcon"></text>
-			<input type="text" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange" />
+			<input type="text" placeholder="{{placeholderContent}}" placeholder-class="placeholder" bindinput="handleInputChange" value="{{searchContent}}" />
+			<!-- 清空按钮 hidden相当于vue中v-show -->
+			<text class="clear" bindtap="clearSearch" hidden="{{!searchContent.length}}">X</text>
 		</view>
 		<text class="cancel">取消</text>
+	</view>
+	
+<block wx:if="{{searchList.length}}">
+	<!-- 搜索内容展示 -->
+	<view class="showSearchContent">
+		<view class="searchContent">
+			搜索内容：{{searchContent}}
+		</view>
+		<view class="searchItem" wx:for="{{searchList}}" wx:key="id" >
+			<text class="iconfont icon-search1"></text>
+			<text class="content">{{item.name}}</text>
+		</view>
+	</view>
+</block>
+	
+
+<block wx:else>
+	<!-- 搜索历史记录 -->
+	<view class="history" wx:if="{{historyList.length}}">
+		<view class="title">历史</view>
+		
+		<scroll-view class="historyScroll" scroll-x enable-flex scroll-with-animation>
+			<view class="historyItem" wx:for="{{historyList}}" wx:key="index">{{item}}</view>
+		</scroll-view>
+		
+		<!-- 删除清空 历史 -->
+		<text class="iconfont icon-shanchu delete" bindtap="delectSearch"></text>
+		
 	</view>
 	
 	<!-- 热搜榜 -->
@@ -22,5 +52,7 @@
 			</view>
 			
 		</view>
-	</view>
+	</view>	
+</block>
+
 </view>

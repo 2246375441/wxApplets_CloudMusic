@@ -29,12 +29,19 @@
 .placeholder{
 	font-size: 28rpx;
 }
-
+/* 搜索框 清空按钮 */
+.clear{
+	position: absolute;
+	right: 30rpx;
+	top: 0;
+	font-size: 30rpx;
+	z-index: 10;
+}
 /* 热搜榜 */
-.title{
+.hotContainer .title{
 	font-size: 28rpx;
-	height: 80rpx;
-	line-height: 80rpx;
+	height: 60rpx;
+	line-height: 60rpx;
 	border-bottom: solid 1rpx red;
 }
 /* 热搜列表 */
@@ -55,4 +62,56 @@
 	width: 35rpx;
 	height: 20rpx;
 	margin-left: 10rpx;
+}
+
+/* 搜索内容展示 */
+.searchContent{
+	/* color: ; */
+	height: 80rpx;
+	line-height: 80rpx;
+	font-size: 24rpx;
+	border-bottom: 1rpx solid #fff;
+}
+.searchItem{
+	height: 80rpx;
+	line-height: 80rpx;
+	display: flex;
+}
+.searchItem .content{
+	flex: 1;
+	margin-left: 20rpx;
+	border-bottom: 1rpx solid #eee;
+	font-size: 26rpx;
+}
+
+/* 搜索历史记录 */
+.history{
+	display: flex;
+	height: 50rpx;
+	justify-content: space-between;
+}
+.history .title{
+	/* background: red; */
+	width: 70rpx;
+	height: 50rpx;
+	font-size: 30rpx;
+	line-height: 50rpx;
+}
+.historyScroll{
+	height: 50rpx;
+	width: calc(100% - 70rpx - 50rpx - 60rpx);
+	display: flex;
+}
+.historyItem{
+	margin-right: 50rpx;
+	height: 300rpx;
+	white-space:nowrap;
+	font-size: 30rpx;
+	line-height: 50rpx;
+}
+/* 删除按钮 */
+.history .delete{
+	width: 50rpx;
+	height: 50rpx;
+	font-size: 36rpx;
 }
