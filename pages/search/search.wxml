@@ -7,7 +7,7 @@
 			<!-- 清空按钮 hidden相当于vue中v-show -->
 			<text class="clear" bindtap="clearSearch" hidden="{{!searchContent.length}}">X</text>
 		</view>
-		<text class="cancel">取消</text>
+		<text class="cancel" bindtap="toVideo">取消</text>
 	</view>
 	
 <block wx:if="{{searchList.length}}">
