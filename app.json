@@ -4,8 +4,6 @@
     "pages/personal/personal",
     "pages/video/video",
     "pages/login/login",
-    "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail",
     "pages/search/search"
   ],
   "window": {
@@ -41,6 +39,20 @@
   "requiredBackgroundModes": [
     "audio"
   ],
+	"subPackages": [
+    {
+      "root": "songPackage",
+      "pages": [
+        "pages/recommendSong/recommendSong",
+				"pages/songDetail/songDetail"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index":{
+      "packages": ["songPackage"]
+    }
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -1,4 +1,4 @@
-import request from '../../utils/request';
+import request from '../../../utils/request'
 import PubSub from 'pubsub-js';
 import moment from 'moment';
 // 获取全局实例 app.js中实例对象
